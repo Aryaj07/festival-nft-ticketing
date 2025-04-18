@@ -51,6 +51,7 @@ backend/typechain-types/
 
 # Hardhat
 typechain/
+ignition/
 
 # Misc
 .vercel 
