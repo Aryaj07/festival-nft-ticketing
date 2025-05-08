@@ -1,9 +1,15 @@
-// Contract deployed on Ganache
-const FESTIVAL_NFT_ADDRESS = '0x67081e0FD7A19aEb6F940C6d31c5bE6aA99A8abF';
+// Contract addresses from environment variables
+const FESTIVAL_NFT_ADDRESS = process.env.NEXT_PUBLIC_FESTIVAL_NFT_ADDRESS as `0x${string}`;
+const FEST_TOKEN_ADDRESS = process.env.NEXT_PUBLIC_FEST_TOKEN_ADDRESS as `0x${string}`;
+const FACTORY_ADDRESS = process.env.NEXT_PUBLIC_FACTORY_ADDRESS as `0x${string}`;
+
+if (!FESTIVAL_NFT_ADDRESS || !FEST_TOKEN_ADDRESS || !FACTORY_ADDRESS) {
+  throw new Error('Contract addresses not found in environment variables. Please check your .env.local file.');
+}
 
 export const CONTRACTS = {
   FestToken: {
-    address: '0x35C2aeB654B7EDEDE9e22800D1af23B43F1A938a',
+    address: FEST_TOKEN_ADDRESS,
     abi: [
       'function mint(address to, uint256 amount)',
       'function balanceOf(address account) view returns (uint256)',
@@ -12,7 +18,7 @@ export const CONTRACTS = {
     ],
   },
   FestivalNFT: {
-    address: "0x1169f6493EEE5Ae447D744891473A50F1a337868",
+    address: FESTIVAL_NFT_ADDRESS,
     abi: [
       {
         name: 'festivals',
